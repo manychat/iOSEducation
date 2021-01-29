@@ -13,6 +13,13 @@
 		E22240EE25B9FE570028F255 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E22240EC25B9FE570028F255 /* LaunchScreen.storyboard */; };
 		E22240F925B9FE570028F255 /* ManyChatTemplatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22240F825B9FE570028F255 /* ManyChatTemplatesTests.swift */; };
 		E222410425B9FE570028F255 /* ManyChatTemplatesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222410325B9FE570028F255 /* ManyChatTemplatesUITests.swift */; };
+		E283F3A025C40CCC004475B7 /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E283F39F25C40CCC004475B7 /* Labels.swift */; };
+		E283F3A925C4103D004475B7 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E283F3A825C4103D004475B7 /* UILabel+Extensions.swift */; };
+		E283F3B125C41052004475B7 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E283F3B025C41052004475B7 /* ActionButton.swift */; };
+		E283F3B925C411F0004475B7 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E283F3B825C411F0004475B7 /* UIButton+Extensions.swift */; };
+		E283F3BE25C412E2004475B7 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E283F3BD25C412E2004475B7 /* UIImage+Extensions.swift */; };
+		E283F3CB25C4150B004475B7 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E283F3CA25C4150B004475B7 /* UIView+Extensions.swift */; };
+		E283F3D025C41633004475B7 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E283F3CF25C41633004475B7 /* UIColor+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +52,13 @@
 		E22240FF25B9FE570028F255 /* ManyChatTemplatesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ManyChatTemplatesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E222410325B9FE570028F255 /* ManyChatTemplatesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManyChatTemplatesUITests.swift; sourceTree = "<group>"; };
 		E222410525B9FE570028F255 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E283F39F25C40CCC004475B7 /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
+		E283F3A825C4103D004475B7 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		E283F3B025C41052004475B7 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		E283F3B825C411F0004475B7 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
+		E283F3BD25C412E2004475B7 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		E283F3CA25C4150B004475B7 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		E283F3CF25C41633004475B7 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +109,8 @@
 		E22240E025B9FE540028F255 /* ManyChatTemplates */ = {
 			isa = PBXGroup;
 			children = (
+				E283F3A725C41031004475B7 /* Extension */,
+				E283F39E25C40CC1004475B7 /* UI components */,
 				E22240E125B9FE540028F255 /* AppDelegate.swift */,
 				E22240E525B9FE540028F255 /* ViewController.swift */,
 				E22240EA25B9FE570028F255 /* Assets.xcassets */,
@@ -120,6 +136,27 @@
 				E222410525B9FE570028F255 /* Info.plist */,
 			);
 			path = ManyChatTemplatesUITests;
+			sourceTree = "<group>";
+		};
+		E283F39E25C40CC1004475B7 /* UI components */ = {
+			isa = PBXGroup;
+			children = (
+				E283F39F25C40CCC004475B7 /* Labels.swift */,
+				E283F3B025C41052004475B7 /* ActionButton.swift */,
+			);
+			path = "UI components";
+			sourceTree = "<group>";
+		};
+		E283F3A725C41031004475B7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E283F3A825C4103D004475B7 /* UILabel+Extensions.swift */,
+				E283F3BD25C412E2004475B7 /* UIImage+Extensions.swift */,
+				E283F3B825C411F0004475B7 /* UIButton+Extensions.swift */,
+				E283F3CA25C4150B004475B7 /* UIView+Extensions.swift */,
+				E283F3CF25C41633004475B7 /* UIColor+Extensions.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,8 +288,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E283F3A925C4103D004475B7 /* UILabel+Extensions.swift in Sources */,
+				E283F3B925C411F0004475B7 /* UIButton+Extensions.swift in Sources */,
+				E283F3A025C40CCC004475B7 /* Labels.swift in Sources */,
+				E283F3BE25C412E2004475B7 /* UIImage+Extensions.swift in Sources */,
 				E22240E625B9FE540028F255 /* ViewController.swift in Sources */,
 				E22240E225B9FE540028F255 /* AppDelegate.swift in Sources */,
+				E283F3CB25C4150B004475B7 /* UIView+Extensions.swift in Sources */,
+				E283F3D025C41633004475B7 /* UIColor+Extensions.swift in Sources */,
+				E283F3B125C41052004475B7 /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

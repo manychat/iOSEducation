@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_manychat.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
