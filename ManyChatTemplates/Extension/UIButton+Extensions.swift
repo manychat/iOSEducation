@@ -8,15 +8,6 @@
 import UIKit
 
 extension UIButton {
-	convenience init(cornerRadius: CGFloat) {
-		self.init(frame: .zero)
-
-		layer.cornerRadius = cornerRadius
-		clipsToBounds = true
-	}
-}
-
-extension UIButton {
 	override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		isHighlighted = true
 		super.touchesBegan(touches, with: event)

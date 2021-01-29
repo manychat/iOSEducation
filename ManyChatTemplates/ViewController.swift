@@ -26,17 +26,25 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		navigationController?.setNavigationBarHidden(true, animated: false)
+
 		_setup(titleLabel: titleLabel, descriptionLabel: descriptionLabel)
 		_setup(termOfServiceTextView: _termOfServiceTextView)
 
 		_actionButton.setTitle("Choose Template", for: .normal)
 
-		// New style iOS 14+
-		_actionButton.addAction(.init(handler: { (action) in
+		// ARK - automatic refereance counter
 
+		_actionButton.addAction(.init(handler: { [weak self] (action) in
+			let templateViewController = TempalteViewController()
+			self?.navigationController?.pushViewController(templateViewController, animated: true)
 		}), for: .touchUpInside)
+		// New style iOS 14+
+//		_actionButton.addAction(.init(handler: { (action) in
+//
+//		}), for: .touchUpInside)
 		// Old style
-//		_actionButton.addTarget(self, action: #selector(_didPressedActionButton(_:)), for: .touchUpInside)
+		_actionButton.addTarget(self, action: #selector(_didPressedActionButton(_:)), for: .touchUpInside)
 
 		let bottomStackView = _createVerticalStackView(with: [_actionButton, _termOfServiceTextView], spacing: ._buttonToTextSpacing)
 		view.addSubview(bottomStackView)

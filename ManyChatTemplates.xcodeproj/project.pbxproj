@@ -20,6 +20,8 @@
 		E283F3BE25C412E2004475B7 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E283F3BD25C412E2004475B7 /* UIImage+Extensions.swift */; };
 		E283F3CB25C4150B004475B7 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E283F3CA25C4150B004475B7 /* UIView+Extensions.swift */; };
 		E283F3D025C41633004475B7 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E283F3CF25C41633004475B7 /* UIColor+Extensions.swift */; };
+		E2B2AB3A25C426E7004E5AB1 /* TemplatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B2AB3925C426E7004E5AB1 /* TemplatesViewController.swift */; };
+		E2B2AB3F25C43321004E5AB1 /* ShimmerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B2AB3E25C43321004E5AB1 /* ShimmerCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		E283F3BD25C412E2004475B7 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		E283F3CA25C4150B004475B7 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		E283F3CF25C41633004475B7 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		E2B2AB3925C426E7004E5AB1 /* TemplatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatesViewController.swift; sourceTree = "<group>"; };
+		E2B2AB3E25C43321004E5AB1 /* ShimmerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,8 @@
 				E283F39E25C40CC1004475B7 /* UI components */,
 				E22240E125B9FE540028F255 /* AppDelegate.swift */,
 				E22240E525B9FE540028F255 /* ViewController.swift */,
+				E2B2AB3925C426E7004E5AB1 /* TemplatesViewController.swift */,
+				E2B2AB3E25C43321004E5AB1 /* ShimmerCell.swift */,
 				E22240EA25B9FE570028F255 /* Assets.xcassets */,
 				E22240EC25B9FE570028F255 /* LaunchScreen.storyboard */,
 				E22240EF25B9FE570028F255 /* Info.plist */,
@@ -292,11 +298,13 @@
 				E283F3B925C411F0004475B7 /* UIButton+Extensions.swift in Sources */,
 				E283F3A025C40CCC004475B7 /* Labels.swift in Sources */,
 				E283F3BE25C412E2004475B7 /* UIImage+Extensions.swift in Sources */,
+				E2B2AB3A25C426E7004E5AB1 /* TemplatesViewController.swift in Sources */,
 				E22240E625B9FE540028F255 /* ViewController.swift in Sources */,
 				E22240E225B9FE540028F255 /* AppDelegate.swift in Sources */,
 				E283F3CB25C4150B004475B7 /* UIView+Extensions.swift in Sources */,
 				E283F3D025C41633004475B7 /* UIColor+Extensions.swift in Sources */,
 				E283F3B125C41052004475B7 /* ActionButton.swift in Sources */,
+				E2B2AB3F25C43321004E5AB1 /* ShimmerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

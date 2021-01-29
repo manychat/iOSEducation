@@ -13,4 +13,11 @@ extension UIView {
 
 		self.backgroundColor = backgroundColor
 	}
+
+	convenience init(cornerRadius: CGFloat) {
+		self.init(frame: .zero)
+
+		layer.cornerRadius = cornerRadius
+		clipsToBounds = true
+	}
 }

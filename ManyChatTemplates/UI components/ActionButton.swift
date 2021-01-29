@@ -13,6 +13,7 @@ final class ActionButton: UIButton {
 
 		titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
 		setTitleColor(.white, for: .normal)
+//		backgroundColor = .red
 		setBackgroundImage(.withColor(.init(style: .blueOne)), for: .normal)
 
 		translatesAutoresizingMaskIntoConstraints = false
