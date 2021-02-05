@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E210D38425CD469200C8A9C7 /* TemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E210D38325CD469200C8A9C7 /* TemplateCell.swift */; };
+		E210D38C25CD514800C8A9C7 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E210D38B25CD514700C8A9C7 /* UIImageView+Extensions.swift */; };
+		E210D39225CD535800C8A9C7 /* Shimmerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E210D39125CD535800C8A9C7 /* Shimmerable.swift */; };
+		E210D39A25CD55D200C8A9C7 /* ProView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E210D39925CD55D200C8A9C7 /* ProView.swift */; };
 		E22240E225B9FE540028F255 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22240E125B9FE540028F255 /* AppDelegate.swift */; };
 		E22240E625B9FE540028F255 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22240E525B9FE540028F255 /* ViewController.swift */; };
 		E22240EB25B9FE570028F255 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E22240EA25B9FE570028F255 /* Assets.xcassets */; };
@@ -42,6 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E210D38325CD469200C8A9C7 /* TemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateCell.swift; sourceTree = "<group>"; };
+		E210D38B25CD514700C8A9C7 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		E210D39125CD535800C8A9C7 /* Shimmerable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shimmerable.swift; sourceTree = "<group>"; };
+		E210D39925CD55D200C8A9C7 /* ProView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProView.swift; sourceTree = "<group>"; };
 		E22240DE25B9FE540028F255 /* ManyChatTemplates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManyChatTemplates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E22240E125B9FE540028F255 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E22240E525B9FE540028F255 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +98,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E210D38225CD468400C8A9C7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E2B2AB3E25C43321004E5AB1 /* ShimmerCell.swift */,
+				E210D38325CD469200C8A9C7 /* TemplateCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		E210D39025CD534F00C8A9C7 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E210D39125CD535800C8A9C7 /* Shimmerable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		E22240D525B9FE540028F255 = {
 			isa = PBXGroup;
 			children = (
@@ -118,7 +143,6 @@
 				E22240E125B9FE540028F255 /* AppDelegate.swift */,
 				E22240E525B9FE540028F255 /* ViewController.swift */,
 				E2B2AB3925C426E7004E5AB1 /* TemplatesViewController.swift */,
-				E2B2AB3E25C43321004E5AB1 /* ShimmerCell.swift */,
 				E22240EA25B9FE570028F255 /* Assets.xcassets */,
 				E22240EC25B9FE570028F255 /* LaunchScreen.storyboard */,
 				E22240EF25B9FE570028F255 /* Info.plist */,
@@ -147,8 +171,11 @@
 		E283F39E25C40CC1004475B7 /* UI components */ = {
 			isa = PBXGroup;
 			children = (
+				E210D39025CD534F00C8A9C7 /* Protocols */,
+				E210D38225CD468400C8A9C7 /* Cells */,
 				E283F39F25C40CCC004475B7 /* Labels.swift */,
 				E283F3B025C41052004475B7 /* ActionButton.swift */,
+				E210D39925CD55D200C8A9C7 /* ProView.swift */,
 			);
 			path = "UI components";
 			sourceTree = "<group>";
@@ -161,6 +188,7 @@
 				E283F3B825C411F0004475B7 /* UIButton+Extensions.swift */,
 				E283F3CA25C4150B004475B7 /* UIView+Extensions.swift */,
 				E283F3CF25C41633004475B7 /* UIColor+Extensions.swift */,
+				E210D38B25CD514700C8A9C7 /* UIImageView+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -294,7 +322,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E210D38C25CD514800C8A9C7 /* UIImageView+Extensions.swift in Sources */,
 				E283F3A925C4103D004475B7 /* UILabel+Extensions.swift in Sources */,
+				E210D39A25CD55D200C8A9C7 /* ProView.swift in Sources */,
+				E210D38425CD469200C8A9C7 /* TemplateCell.swift in Sources */,
 				E283F3B925C411F0004475B7 /* UIButton+Extensions.swift in Sources */,
 				E283F3A025C40CCC004475B7 /* Labels.swift in Sources */,
 				E283F3BE25C412E2004475B7 /* UIImage+Extensions.swift in Sources */,
@@ -303,6 +334,7 @@
 				E22240E225B9FE540028F255 /* AppDelegate.swift in Sources */,
 				E283F3CB25C4150B004475B7 /* UIView+Extensions.swift in Sources */,
 				E283F3D025C41633004475B7 /* UIColor+Extensions.swift in Sources */,
+				E210D39225CD535800C8A9C7 /* Shimmerable.swift in Sources */,
 				E283F3B125C41052004475B7 /* ActionButton.swift in Sources */,
 				E2B2AB3F25C43321004E5AB1 /* ShimmerCell.swift in Sources */,
 			);

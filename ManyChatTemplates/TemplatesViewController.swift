@@ -8,7 +8,21 @@
 import UIKit
 
 final class TempalteViewController: UIViewController {
-	private let _tableView = UITableView()
+	private let _tableView: UITableView = {
+		let tableView = UITableView()
+		tableView.register(ShimmerCell.self, forCellReuseIdentifier: "ShimmerCell")
+		tableView.register(TemplateCell.self, forCellReuseIdentifier: "TemplateCell")
+		tableView.separatorInset.left = 0
+		tableView.estimatedRowHeight = 250
+		tableView.rowHeight = UITableView.automaticDimension
+		return tableView
+	}()
+
+	private var _state: State = .initial {
+		didSet {
+			_tableView.reloadData()
+		}
+	}
 
 	override func loadView() {
 		let view = UIView()
@@ -19,63 +33,108 @@ final class TempalteViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		navigationController?.setNavigationBarHidden(false, animated: false)
-		navigationController?.navigationBar.barTintColor = .white
-		navigationController?.navigationBar.isTranslucent = false
-		navigationController?.navigationBar.setBackgroundImage(nil, for: .defaultPrompt)
-		navigationController?.navigationBar.shadowImage = nil
+		_setup(navigationController: navigationController)
+		_setup(navigationItem: navigationItem)
 
-		let titleLabel = TitleSecondLabel()
-		titleLabel.text = "Templates"
-		navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
-
-		view.addSubview(_tableView)
-
-		_tableView.translatesAutoresizingMaskIntoConstraints = false
-		NSLayoutConstraint.activate([
-			_tableView.topAnchor.constraint(equalTo: view.topAnchor),
-			_tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-			_tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-			_tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-		])
+		view.addSubview(_tableView, constraints: .allAnchors)
 
 		_tableView.delegate = self
 		_tableView.dataSource = self
-		_tableView.register(ShimmerCell.self, forCellReuseIdentifier: "ShimmerCell")
 
-		_tableView.reloadData()
-
+		_state = .shimmers(totalCount: 5)
 		DispatchQueue.global().asyncAfter(deadline: .now() + 5.0) {
 			DispatchQueue.main.async {
-				// Здесь ваш код перезагрузки таблицы с данными
+//				[weak self] in - Нужен ли?
+				self._state = .content(viewModels: ._mock)
 			}
 		}
+	}
+
+	private func _setup(navigationController: UINavigationController?) {
+		guard let navigationController = navigationController else { return }
+		navigationController.setNavigationBarHidden(false, animated: false)
+		navigationController.navigationBar.barTintColor = .white
+		navigationController.navigationBar.isTranslucent = false
+		navigationController.navigationBar.setBackgroundImage(nil, for: .defaultPrompt)
+		navigationController.navigationBar.shadowImage = nil
+	}
+
+	private func _setup(navigationItem: UINavigationItem) {
+		let titleLabel = TitleSecondLabel()
+		titleLabel.text = "Templates"
+		navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
 	}
 }
 
 extension TempalteViewController: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 3
-	}
-
-	func numberOfSections(in tableView: UITableView) -> Int {
-		return 5
+		switch _state {
+		case .initial:
+			return 0
+		case .shimmers(let totalCount):
+			return totalCount
+		case .content(let viewModels):
+			return viewModels.count
+		}
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "ShimmerCell", for: indexPath)
-		switch indexPath.section {
-		case 0:
-			cell.backgroundColor = .black
-		case 1...2:
-			cell.backgroundColor = .yellow
-		default:
-			break
+		switch _state {
+		case .initial:
+			fatalError()
+		case .shimmers:
+			let cell = tableView.dequeueReusableCell(withIdentifier: "ShimmerCell", for: indexPath)
+			return cell
+		case let .content(viewModels):
+			guard let cell = tableView
+					.dequeueReusableCell(withIdentifier: "TemplateCell", for: indexPath) as? TemplateCell else {
+				fatalError()
+			}
+			guard let viewModel = viewModels[safe: indexPath.row] else {
+				assertionFailure()
+				return cell
+			}
+			cell.configure(viewModel: viewModel)
+			return cell
 		}
-		return cell
 	}
 
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return UITableView.automaticDimension
+	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		if let shimmerableCell = cell as? Shimmerable {
+			shimmerableCell.startAnimation()
+		}
 	}
+}
+
+fileprivate extension TempalteViewController {
+	enum State {
+		case initial
+		case shimmers(totalCount: Int)
+		case content(viewModels: [TemplateCell.ViewModel])
+	}
+}
+
+fileprivate extension Array where Element == TemplateCell.ViewModel {
+	static let _mock: Self = [
+		.init(
+			title: "Collect Customer Feedback & Reviews",
+			description: "Ask your customers to rate your product or services, collect feedback, and generate reviews for your business",
+			image: UIImage(named: "mock_template_1")!,
+			isPro: false),
+		.init(
+			title: "RallySeller",
+			description: "Show different text to different people based on what they're more likely to respond to using A.I.",
+			image: UIImage(named: "mock_template_2")!,
+			isPro: true),
+		.init(
+			title: "Dialogflow AI Starter Kit by Janis.ai",
+			description: "Instantly understand the most common messages with AI from Google",
+			image: UIImage(named: "mock_template_3")!,
+			isPro: false),
+		.init(
+			title: "Collect Customer Feedback & Reviews",
+			description: "Ask your customers to rate your product or services, collect feedback, and generate reviews for your business",
+			image: UIImage(named: "mock_template_1")!,
+			isPro: true),
+	]
 }

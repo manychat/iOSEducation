@@ -36,3 +36,18 @@ final class BodyOneLabel: UILabel {
 		fatalError()
 	}
 }
+
+final class BodySecondLabel: UILabel {
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+
+		font = UIFont.preferredFont(forTextStyle: .title3)
+		textColor = UIColor(style: .secondary)
+
+		translatesAutoresizingMaskIntoConstraints = false
+	}
+
+	required init?(coder: NSCoder) {
+		fatalError()
+	}
+}
