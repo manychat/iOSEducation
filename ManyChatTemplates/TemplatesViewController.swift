@@ -7,6 +7,8 @@
 
 import UIKit
 
+let backgroundQueue = DispatchQueue(label: "Backbground")
+
 final class TempalteViewController: UIViewController {
 	private let _tableView: UITableView = {
 		let tableView = UITableView()
@@ -20,9 +22,12 @@ final class TempalteViewController: UIViewController {
 
 	private var _state: State = .initial {
 		didSet {
-			_tableView.reloadData()
 		}
 	}
+
+	private var myFunc: (() -> Void)?
+
+	private let _tempalteService: TemplateServiceInterface = TemplatesService()
 
 	override func loadView() {
 		let view = UIView()
@@ -41,13 +46,15 @@ final class TempalteViewController: UIViewController {
 		_tableView.delegate = self
 		_tableView.dataSource = self
 
-		_state = .shimmers(totalCount: 5)
-		DispatchQueue.global().asyncAfter(deadline: .now() + 5.0) {
-			DispatchQueue.main.async {
-//				[weak self] in - Нужен ли?
-				self._state = .content(viewModels: ._mock)
+//		_state = .shimmers(totalCount: 5)
+		_tempalteService.list(completion: { result in
+			switch result {
+			case let .success(templates):
+				self._state = .content(viewModels: templates.toViewModels)
+			case .failure:
+				break
 			}
-		}
+		})
 	}
 
 	private func _setup(navigationController: UINavigationController?) {
@@ -114,27 +121,39 @@ fileprivate extension TempalteViewController {
 	}
 }
 
-fileprivate extension Array where Element == TemplateCell.ViewModel {
-	static let _mock: Self = [
-		.init(
-			title: "Collect Customer Feedback & Reviews",
-			description: "Ask your customers to rate your product or services, collect feedback, and generate reviews for your business",
-			image: UIImage(named: "mock_template_1")!,
-			isPro: false),
-		.init(
-			title: "RallySeller",
-			description: "Show different text to different people based on what they're more likely to respond to using A.I.",
-			image: UIImage(named: "mock_template_2")!,
-			isPro: true),
-		.init(
-			title: "Dialogflow AI Starter Kit by Janis.ai",
-			description: "Instantly understand the most common messages with AI from Google",
-			image: UIImage(named: "mock_template_3")!,
-			isPro: false),
-		.init(
-			title: "Collect Customer Feedback & Reviews",
-			description: "Ask your customers to rate your product or services, collect feedback, and generate reviews for your business",
-			image: UIImage(named: "mock_template_1")!,
-			isPro: true),
-	]
+fileprivate extension Array where Element == Template {
+	var toViewModels: [TemplateCell.ViewModel] {
+		return map { template in
+			return .init(
+				title: template.title,
+				description: template.description,
+				imageURL: template.coverURL,
+				isPro: !(template.proStatus == 0))
+		}
+	}
 }
+
+//fileprivate extension Array where Element == TemplateCell.ViewModel {
+//	static let _mock: Self = [
+//		.init(
+//			title: "Collect Customer Feedback & Reviews",
+//			description: "Ask your customers to rate your product or services, collect feedback, and generate reviews for your business",
+//			image: UIImage(named: "mock_template_1")!,
+//			isPro: false),
+//		.init(
+//			title: "RallySeller",
+//			description: "Show different text to different people based on what they're more likely to respond to using A.I.",
+//			image: UIImage(named: "mock_template_2")!,
+//			isPro: true),
+//		.init(
+//			title: "Dialogflow AI Starter Kit by Janis.ai",
+//			description: "Instantly understand the most common messages with AI from Google",
+//			image: UIImage(named: "mock_template_3")!,
+//			isPro: false),
+//		.init(
+//			title: "Collect Customer Feedback & Reviews",
+//			description: "Ask your customers to rate your product or services, collect feedback, and generate reviews for your business",
+//			image: UIImage(named: "mock_template_1")!,
+//			isPro: true),
+//	]
+//}

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class TemplateCell: UITableViewCell {
 	private let _titleLabel = UILabel(numberOfLines: 0)
@@ -50,7 +51,7 @@ final class TemplateCell: UITableViewCell {
 	func configure(viewModel: ViewModel) {
 		_titleLabel.text = viewModel.title
 		_descriptionLabel.text = viewModel.description
-		_contentImageView.image = viewModel.image
+		_contentImageView.kf.setImage(with: viewModel.imageURL, options: [.forceRefresh])
 		_proIndicator.isHidden = !viewModel.isPro
 	}
 }
@@ -59,7 +60,7 @@ extension TemplateCell {
 	struct ViewModel {
 		let title: String
 		let description: String
-		let image: UIImage
+		let imageURL: URL
 		let isPro: Bool
 	}
 }
