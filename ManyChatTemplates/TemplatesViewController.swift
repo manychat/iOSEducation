@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 let backgroundQueue = DispatchQueue(label: "Backbground")
 
@@ -22,12 +23,20 @@ final class TempalteViewController: UIViewController {
 
 	private var _state: State = .initial {
 		didSet {
+			DispatchQueue.main.async {
+				self._tableView.reloadData()
+			}
 		}
 	}
 
 	private var myFunc: (() -> Void)?
 
 	private let _tempalteService: TemplateServiceInterface = TemplatesService()
+
+	private lazy var _context: NSManagedObjectContext = {
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate  else { fatalError() }
+		return appDelegate.persistentContainer.viewContext
+	}()
 
 	override func loadView() {
 		let view = UIView()
@@ -46,11 +55,31 @@ final class TempalteViewController: UIViewController {
 		_tableView.delegate = self
 		_tableView.dataSource = self
 
-//		_state = .shimmers(totalCount: 5)
-		_tempalteService.list(completion: { result in
+		self._context.perform {
+			let fetchRequest = NSFetchRequest<TemplateMO>(entityName: "TemplateMO")
+			fetchRequest.sortDescriptors = [.init(key: "id", ascending: false)]
+			let templateMO = try? self._context.fetch(fetchRequest)
+		}
+
+		_tempalteService.list(completion: { [weak self] result in
+			guard let self = self else { return }
 			switch result {
 			case let .success(templates):
 				self._state = .content(viewModels: templates.toViewModels)
+				self._context.perform {
+					guard let entityDescription = NSEntityDescription.entity(forEntityName: "TemplateMO", in: self._context) else { return }
+					templates.map { template -> TemplateMO in
+						let templateMO = TemplateMO(entity: entityDescription, insertInto: self._context)
+						templateMO.id = Int64(template.id)
+						templateMO.descript = template.description
+						templateMO.coverURL = template.coverURL.absoluteString
+						templateMO.proStatus = Int16(template.proStatus)
+						return templateMO
+					}.forEach { (tempalteMO) in
+						self._context.insert(tempalteMO)
+					}
+					try? self._context.save()
+				}
 			case .failure:
 				break
 			}

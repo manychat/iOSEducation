@@ -38,6 +38,7 @@ class ViewController: UIViewController {
 		_actionButton.addAction(.init(handler: { [weak self] (action) in
 			let templateViewController = TempalteViewController()
 			self?.navigationController?.pushViewController(templateViewController, animated: true)
+			UserDefaultService.hasSignIn = true
 		}), for: .touchUpInside)
 		// New style iOS 14+
 //		_actionButton.addAction(.init(handler: { (action) in
