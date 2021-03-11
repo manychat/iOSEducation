@@ -10,6 +10,8 @@
 		0E7CAF70985F716DAF7BE66B /* Pods_ManyChatTemplatesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A065754B79D131B7F2C61EC9 /* Pods_ManyChatTemplatesTests.framework */; };
 		1BDDE934B6F606FEB91901CC /* Pods_ManyChatTemplates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F9516FE96F4631CCB4F5EA /* Pods_ManyChatTemplates.framework */; };
 		79A9F633D83FAECA4CF6B379 /* Pods_ManyChatTemplates_ManyChatTemplatesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C972226CC8213DF4ADA564E8 /* Pods_ManyChatTemplates_ManyChatTemplatesUITests.framework */; };
+		E202BF6C25FA23000020C352 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E202BF6B25FA22FF0020C352 /* Repository.swift */; };
+		E202BF7125FA2FB70020C352 /* TemplateListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E202BF7025FA2FB70020C352 /* TemplateListOperation.swift */; };
 		E210D38425CD469200C8A9C7 /* TemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E210D38325CD469200C8A9C7 /* TemplateCell.swift */; };
 		E210D38C25CD514800C8A9C7 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E210D38B25CD514700C8A9C7 /* UIImageView+Extensions.swift */; };
 		E210D39225CD535800C8A9C7 /* Shimmerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E210D39125CD535800C8A9C7 /* Shimmerable.swift */; };
@@ -63,6 +65,8 @@
 		B300C710E00570B332890417 /* Pods-ManyChatTemplates-ManyChatTemplatesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManyChatTemplates-ManyChatTemplatesUITests.debug.xcconfig"; path = "Target Support Files/Pods-ManyChatTemplates-ManyChatTemplatesUITests/Pods-ManyChatTemplates-ManyChatTemplatesUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C5472E9D7EB51A4EF8E56B06 /* Pods-ManyChatTemplates.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManyChatTemplates.release.xcconfig"; path = "Target Support Files/Pods-ManyChatTemplates/Pods-ManyChatTemplates.release.xcconfig"; sourceTree = "<group>"; };
 		C972226CC8213DF4ADA564E8 /* Pods_ManyChatTemplates_ManyChatTemplatesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ManyChatTemplates_ManyChatTemplatesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E202BF6B25FA22FF0020C352 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		E202BF7025FA2FB70020C352 /* TemplateListOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateListOperation.swift; sourceTree = "<group>"; };
 		E210D38325CD469200C8A9C7 /* TemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateCell.swift; sourceTree = "<group>"; };
 		E210D38B25CD514700C8A9C7 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		E210D39125CD535800C8A9C7 /* Shimmerable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shimmerable.swift; sourceTree = "<group>"; };
@@ -206,6 +210,8 @@
 				E29FBF2625CD696B00BBBD38 /* TemplatesContrainer.swift */,
 				E22240E525B9FE540028F255 /* ViewController.swift */,
 				E2B2AB3925C426E7004E5AB1 /* TemplatesViewController.swift */,
+				E202BF7025FA2FB70020C352 /* TemplateListOperation.swift */,
+				E202BF6B25FA22FF0020C352 /* Repository.swift */,
 				E22240EA25B9FE570028F255 /* Assets.xcassets */,
 				E22240EC25B9FE570028F255 /* LaunchScreen.storyboard */,
 				E22240EF25B9FE570028F255 /* Info.plist */,
@@ -516,10 +522,12 @@
 				E22240E625B9FE540028F255 /* ViewController.swift in Sources */,
 				E22240E225B9FE540028F255 /* AppDelegate.swift in Sources */,
 				E283F3CB25C4150B004475B7 /* UIView+Extensions.swift in Sources */,
+				E202BF6C25FA23000020C352 /* Repository.swift in Sources */,
 				E283F3D025C41633004475B7 /* UIColor+Extensions.swift in Sources */,
 				E210D39225CD535800C8A9C7 /* Shimmerable.swift in Sources */,
 				E283F3B125C41052004475B7 /* ActionButton.swift in Sources */,
 				E2A07F9125E65D3F00F4DD8A /* UserDefaultService.swift in Sources */,
+				E202BF7125FA2FB70020C352 /* TemplateListOperation.swift in Sources */,
 				E2A07F9825E6614C00F4DD8A /* Model.xcdatamodeld in Sources */,
 				E2B2AB3F25C43321004E5AB1 /* ShimmerCell.swift in Sources */,
 			);

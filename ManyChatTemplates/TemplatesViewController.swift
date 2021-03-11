@@ -29,9 +29,14 @@ final class TempalteViewController: UIViewController {
 		}
 	}
 
+	private lazy var repository: TemplateRepositoryInput = {
+		return TemplateRepository(context: _context)
+	}()
+
 	private var myFunc: (() -> Void)?
 
 	private let _tempalteService: TemplateServiceInterface = TemplatesService()
+	private let operationQueue = OperationQueue()
 
 	private lazy var _context: NSManagedObjectContext = {
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate  else { fatalError() }
@@ -55,44 +60,63 @@ final class TempalteViewController: UIViewController {
 		_tableView.delegate = self
 		_tableView.dataSource = self
 
+		
+
 		self._context.perform {
 			let fetchRequest = NSFetchRequest<TemplateMO>(entityName: "TemplateMO")
 			fetchRequest.sortDescriptors = [.init(key: "id", ascending: false)]
 			let templateMO = try? self._context.fetch(fetchRequest)
 		}
 
-		_tempalteService.list(completion: { [weak self] result in
-			guard let self = self else { return }
-			switch result {
-			case let .success(templates):
-				self._state = .content(viewModels: templates.toViewModels)
-				self._context.perform {
-					guard let entityDescription = NSEntityDescription.entity(forEntityName: "TemplateMO", in: self._context) else { return }
-					templates.map { template -> TemplateMO in
-						let templateMO = TemplateMO(entity: entityDescription, insertInto: self._context)
-						templateMO.id = Int64(template.id)
-						templateMO.descript = template.description
-						templateMO.coverURL = template.coverURL.absoluteString
-						templateMO.proStatus = Int16(template.proStatus)
-						return templateMO
-					}.forEach { (tempalteMO) in
-						self._context.insert(tempalteMO)
-					}
-					try? self._context.save()
+		let operation = _tempalteService.list(completion: { _ in })
+		let handleOperation = BlockOperation { [operation] in
+			switch operation.result {
+			case let .success(container):
+				self._state = .content(viewModels: container.templates.toViewModels)
+//				container.templates.forEach { self.repository.save(object: $0) }
+
+				container.templates.forEach {
+					let saveOperation = SaveOperation(context: self._context, object: $0)
+					self.operationQueue.addOperation(saveOperation)
 				}
 			case .failure:
 				break
+			case .none:
+				break
 			}
-		})
+		}
+		let delayOperation = DelayOperantion()
+
+		handleOperation.addDependency(operation)
+		handleOperation.addDependency(delayOperation)
+
+		operationQueue.addOperations([operation, handleOperation, delayOperation], waitUntilFinished: false)
+
+		DispatchQueue.global().asyncAfter(deadline: .now() + 1.0) {
+			self.operationQueue.operations.forEach { $0.cancel() }
+		}
+
+
+//		_tempalteService.list(completion: { [weak self] result in
+//			guard let self = self else { return }
+//			switch result {
+//			case let .success(templates):
+//				self._state = .content(viewModels: templates.toViewModels)
+//				templates.forEach { self.repository.save(object: $0) }
+//			case .failure:
+//				break
+//			}
+//		})
 	}
 
 	private func _setup(navigationController: UINavigationController?) {
 		guard let navigationController = navigationController else { return }
 		navigationController.setNavigationBarHidden(false, animated: false)
-		navigationController.navigationBar.barTintColor = .white
-		navigationController.navigationBar.isTranslucent = false
-		navigationController.navigationBar.setBackgroundImage(nil, for: .defaultPrompt)
-		navigationController.navigationBar.shadowImage = nil
+
+		let navigationBarAppearence = UINavigationBarAppearance()
+		navigationBarAppearence.shadowColor = .clear
+		navigationBarAppearence.backgroundColor = .white
+		navigationController.navigationBar.standardAppearance = navigationBarAppearence
 	}
 
 	private func _setup(navigationItem: UINavigationItem) {
